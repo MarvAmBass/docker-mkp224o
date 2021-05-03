@@ -15,7 +15,7 @@ RUN apk add --no-cache git build-base gcc libsodium-dev make autoconf \
  && ./configure \
  && make
 
-FROM alpine
+FROM arm64v8/alpine
 COPY --from=builder /mkp224o/mkp224o /bin/mkp224o
 VOLUME /result
 CMD sh -c '[ ! -z "$FILTERS" ] && cd /result && exec mkp224o $FILTERS'
