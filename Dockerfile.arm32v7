@@ -5,7 +5,6 @@ ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/
 RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
 FROM arm32v7/alpine as builder
-
 COPY --from=crossbuilder qemu-arm-static /usr/bin
 
 RUN apk add --no-cache git build-base gcc libsodium-dev make autoconf \
@@ -16,6 +15,8 @@ RUN apk add --no-cache git build-base gcc libsodium-dev make autoconf \
  && make
 
 FROM arm32v7/alpine
+COPY --from=crossbuilder qemu-arm-static /usr/bin
 COPY --from=builder /mkp224o/mkp224o /bin/mkp224o
+RUN apk add --no-cache libsodium
 VOLUME /result
 CMD sh -c '[ ! -z "$FILTERS" ] && cd /result && exec mkp224o $FILTERS'
