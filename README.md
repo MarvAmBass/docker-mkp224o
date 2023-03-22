@@ -1,4 +1,4 @@
-# marvambass/mkp224o - onion addresses generator container (alpine) [x86 + arm]
+# ghcr.io/marvambass/mkp224o - onion addresses generator container (alpine) [x86 + arm]
 
 Docker Container for https://github.com/cathugger/mkp224o
 
@@ -7,6 +7,10 @@ mkp224o - vanity address generator for ed25519 onion services
 This tool generates vanity ed25519 ([hidden service version 3][v3], formely known as proposal 224) onion addresses.
 
 ## Changelogs
+
+* 2023-03-20
+    * github action to build container
+    * implemented ghcr.io as new registry
 
 * 2021-05-03
     * initial commit
